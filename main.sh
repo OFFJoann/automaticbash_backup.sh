@@ -2,19 +2,31 @@
 
 old=""
 count=0
+
+# date cotrol variable
 date=$(date +"%Y%m%d")
 
 
-#controller power on and off
+#swich power on and off
 power() {
 ifconfig ens33 up
 ifconfig lo up
 }
+
 power
+
 off() {
 ifconfig ens33 down
 ifconfig lo down
 }
+
+#transfer file
+transfer() {
+	rm -r /home/nas/system/$old
+	mkdir /home/nas/system/$date
+	sshpass -p "123" scp -r server@192.168.18.254:/home/server/Vol_1 /home/nas/system/$date > /home/nas/backup.log
+}
+transfer
 
 
 #Validation if a backup has already been made to date
@@ -23,12 +35,14 @@ for validation in $(ls /home/nas/system); do
 		sum2=$((count=$count+1))
 	fi
 	if [ $(($validation)) -eq $(($date)) ]; do
-		echo today's backup has already been done
+		echo "today's backup has already been done"
 		off
 		exit
-	fi
+	fi	
 done
+
 #Older backup validation for deletion
+
 for file in $(ls /home/nas/system); do
 	if [ $count -eq 0 ]; then
 		old=$file
@@ -36,13 +50,10 @@ for file in $(ls /home/nas/system); do
 	if [ $(($file)) -lt $(($old)) ]; then
 		old=$file
 	fi
-	sum=$((count=$count+1))
+	sum=$((count=$count+1)
+transfer
 done
-#transfer file
-transfer() {
-	rm -r /home/nas/system/$old
-	mkdir /home/nas/system/$date
-	sshpass -p "123" scp -r server@192.168.18.254:/home/server/Vol_1 /home/nas/system/$date
-}
-echo el backup ha terminado
+
+
+echo "the backup is finished"
 off
