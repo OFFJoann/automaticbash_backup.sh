@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "*MOLDES*"
+echo $(date)
+
+IP_Origen="192.168.7.199"
+Usuario="corte"
+PSS="trazo7896*#"
+Comprimir="C:/Users/$Usuario/7-Zip/7zG a -bd -r -t7z -y C:/Users/$Usuario/img.7z C:/Moldesproduccion"
+
+error=$(sshpass -p "$PSS" ssh $Usuario@$IP_Origen "cmd /c del /F C:\Users\corte\img.7z" 2>&1)
+
+if [ $? -eq 0 ]; then
+	echo "Se Elimino comprimido"
+	sshpass -p "$PSS" ssh $Usuario@$IP_Origen $Comprimir
+else
+	echo "Error"
+	echo "Detalle: $error"
+fi
+
+
