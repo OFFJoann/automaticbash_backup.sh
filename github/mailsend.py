@@ -3,31 +3,31 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import datetime
 
-smtp_server = 'smtp.zoho.com'
-smtp_port = 587  
-smtp_username = 'copiadeseguridad@creacionesnadar.com'
-smtp_password = 'Git_pel66'
+smtp_server = 'smtp.mail.com'
+smtp_port = serverport  
+smtp_username = 'mail@domain.com'
+smtp_password = 'Password'
 
 dia_semana_actual = datetime.datetime.now().weekday()
 
 if dia_semana_actual == 1: 
-    destinatario = 'alopez@nadar.com.co; jduque@nadar.com.co; ccruz@nadar.com.co; digitalizador@nadar.com.co '
-    copia = 'lvilla@nadar.com.co; doliveros@nadar.com.co'
+    destinatario = 'mail1@domain.com; mail2@domain.com; mail3@domain.com; mail4@domain.com '
+    copia = 'copymail@domain.com; copy2mail@domain.com'
     subject = 'COPIA DE SEGURIDAD SGSST, DIGITALIZADOR, MOLDES'
     carpeta = 'SGSST, DIGITALIZADOR, MOLDES'
 elif dia_semana_actual == 2: 
-    destinatario = 'alopez@nadar.com.co'
-    copia = 'lvilla@nadar.com.co; jduque@nadar.com.co'
+    destinatario = 'mail@domain.com'
+    copia = 'mail@domain.com; mail@domain.com'
     subject = 'COPIA DE SEGURIDAD COMPARTIDA'
     carpeta = 'COMPARTIDA'
 elif dia_semana_actual == 3: 
-    destinatario = 'digitalizador@nadar.com.co'
-    copia = 'doliveros@nadar.com.co; jduque@nadar.com.co'
+    destinatario = 'mail@domain.com'
+    copia = 'mail@domain.com; mail@domain.com'
     subject = 'COPIA DE SEGURIDAD DIGITALIZADOR'
     carpeta = 'DIGITALIZADOR'
 
 msg = MIMEMultipart()
-msg['From'] = 'copiadeseguridad@creacionesnadar.com'
+msg['From'] = 'cmail@domain.com'
 msg['To'] = destinatario
 msg['Subject'] = subject
 msg['CC'] = copia
