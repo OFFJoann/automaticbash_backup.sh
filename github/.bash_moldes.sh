@@ -32,7 +32,7 @@ transfer() {
 mkdir /Raid/BK_MOLDES/$date
 sleep 5
 
-error_ssh=$(sshpass -p "trazo7896*#" scp -r -o ConnectTimeout=60 corte@192.168.7.199:C:/Users/corte/img.7z /Raid/BK_MOLDES/$date 2>&1)
+error_ssh=$(sshpass -p "?????" scp -r -o ConnectTimeout=60 user@192.168.1.1:C:/Users/corte/img.7z /Raid/BK_MOLDES/$date 2>&1)
 
 if [ $? -eq 0 ]; then 
 	echo "Copia de seguridad realizada con exito"
