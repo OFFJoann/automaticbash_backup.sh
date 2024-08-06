@@ -1,10 +1,10 @@
 #!/bin/bash
-echo "*MOLDES*"
+echo "*Backup*"
 echo $(date)
 
-IP_Origen="192.168.7.199"
-Usuario="corte"
-PSS="trazo7896*#"
+IP_Origen="192.168.1.1"
+Usuario="?????"
+PSS="?????"
 Comprimir="C:/Users/$Usuario/7-Zip/7zG a -bd -r -t7z -y C:/Users/$Usuario/img.7z C:/Moldesproduccion"
 
 error=$(sshpass -p "$PSS" ssh $Usuario@$IP_Origen "cmd /c del /F C:\Users\corte\img.7z" 2>&1)
